@@ -13,5 +13,6 @@ class TestFillRegister(unittest.TestCase):
         number_of_cans = self.assertEqual(len(SodaMachine.fill_inventory, 30))
         return number_of_cans
 
+
 if __name__ == '__main__':
     unittest.main()
