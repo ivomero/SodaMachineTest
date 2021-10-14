@@ -6,36 +6,51 @@ class TestSodaMachine(unittest.TestCase):
     def setUp(self):
         self.soda_machine = SodaMachine()
 
-    def test_get_coin_from_register(self):
-        quarter_back = self.assertEqual(
-            len(SodaMachine.get_coin_from_register.register.remove, "Quarter"))
-        return quarter_back
+    def test_get_coin_from_register_quarter(self):
+        coin = self.soda_machine.get_coin_from_register("Quarter")
+        self.assertEqual(coin.name, "Quarter")
+
+    def test_get_coin_from_register_dime(self):
+        coin = self.soda_machine.get_coin_from_register("Dime")
+        self.assertEqual(coin.name, "Dime")
+
+    def test_get_coin_from_register_nickel(self):
+        coin = self.soda_machine.get_coin_from_register("Nickel")
+        self.assertEqual(coin.name, "Nickel")
+
+    def test_get_coin_from_register_penny(self):
+        coin = self.soda_machine.get_coin_from_register("Penny")
+        self.assertEqual(coin.name, "Penny")
+
+    def test_get_coin_from_register_invalid(self):
+        coin = self.soda_machine.get_coin_from_register("Half Dollar")
+        self.assertEqual(coin, None)
 
     def test_get_back_dime(self):
-        self.assertEqual(SodaMachine.get_coin_from_register.name, "Dime")
+        coin = self.soda_machine.get_coin_from_register("Dime")
+        self.assertEqual(coin.name, "Dime")
 
     def test_get_back_nickel(self):
-        self.assertEqual(
-            len(SodaMachine.get_coin_from_register.name, "Nickel"))
+        coin = self.soda_machine.get_coin_from_register("Nickel")
+        self.assertEqual(coin.name, "Nickel")
 
     def test_get_back_penny(self):
-        self.assertEqual(len(SodaMachine.get_coin_from_register.name, "Penny"))
+        coin = self.soda_machine.get_coin_from_register("Penny")
+        self.assertEqual(coin.name, "Penny")
 
     def test_get_back_quarter(self):
-        self.assertNotEqual(
-            len(SodaMachine.get_coin_from_register.coin_name, ""))
+        coin = self.soda_machine.get_coin_from_register("Quarter")
+        self.assertEqual(coin.name, "Quarter")
 
     def test_fill_register(self):
-        number_of_coins = self.assertEqual(len(SodaMachine.fill_register, 80))
-        return number_of_coins
+        self.assertEqual(len(self.soda_machine.register), 88)
 
     def test_fill_inventory(self):
-        number_of_cans = self.assertEqual(len(SodaMachine.fill_inventory, 30))
-        return number_of_cans
+        self.assertEqual(len(self.soda_machine.inventory), 30)
 
     def test_get_inventory_soda(self):
         can = self.soda_machine.get_inventory_soda('Cola')
-        self.assertEqual(can, 'Cola')
+        self.assertEqual(can.name, 'Cola')
 
 
 if __name__ == '__main__':
