@@ -1,6 +1,6 @@
 import unittest
 from soda_machine import SodaMachine
-
+from coins import Quarter
 
 class TestSodaMachine(unittest.TestCase):
     def setUp(self):
@@ -51,6 +51,12 @@ class TestSodaMachine(unittest.TestCase):
     def test_get_inventory_soda(self):
         can = self.soda_machine.get_inventory_soda('Cola')
         self.assertEqual(can.name, 'Cola')
+
+    def setUp(self) -> None:
+        self.soda__machine = SodaMachine
+
+    def test_determine_change_value(self):
+        self.assertEqual(Quarter.value, 0.25)
 
 
 if __name__ == '__main__':
