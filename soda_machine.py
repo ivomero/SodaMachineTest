@@ -52,10 +52,12 @@ class SodaMachine:
         """Takes in payment and soda choice, gives customer chosen soda if payment is successful"""
         total_payment_value = self.calculate_coin_value(customer_payment)
         if total_payment_value > selected_soda.price:
-            change_value = self.determine_change_value(total_payment_value, selected_soda.price)
+            change_value = self.determine_change_value(
+                total_payment_value, selected_soda.price)
             customer_change = self.gather_change_from_register(change_value)
             if customer_change is None:
-                user_interface.output_text(f'Dispensing ${total_payment_value} back to customer')
+                user_interface.output_text(
+                    f'Dispensing ${total_payment_value} back to customer')
                 customer.add_coins_to_wallet(customer_payment)
                 self.return_inventory(selected_soda)
             else:
@@ -68,7 +70,8 @@ class SodaMachine:
             customer.add_can_to_backpack(selected_soda)
             user_interface.end_message(selected_soda.name, 0)
         else:
-            user_interface.output_text("You do not have enough money to purchase this item, returning payment")
+            user_interface.output_text(
+                "You do not have enough money to purchase this item, returning payment")
             customer.add_coins_to_wallet(customer_payment)
             self.return_inventory(selected_soda)
 
@@ -91,7 +94,8 @@ class SodaMachine:
             elif change_value == 0:
                 break
             else:
-                user_interface.output_text("Error: Machine does not have enough change to complete transaction")
+                user_interface.output_text(
+                    "Error: Machine does not have enough change to complete transaction")
                 self.deposit_coins_into_register(change_list)
                 change_list = None
                 break

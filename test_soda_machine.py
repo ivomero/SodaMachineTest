@@ -1,6 +1,8 @@
 import unittest
 from soda_machine import SodaMachine
-from coins import Quarter
+from cans import OrangeSoda
+from coins import Nickel, Quarter, Dime, Penny
+
 
 class TestSodaMachine(unittest.TestCase):
     def setUp(self):
@@ -48,15 +50,31 @@ class TestSodaMachine(unittest.TestCase):
     def test_fill_inventory(self):
         self.assertEqual(len(self.soda_machine.inventory), 30)
 
-    def test_get_inventory_soda(self):
+    def test_get_inventory_soda_cola(self):
         can = self.soda_machine.get_inventory_soda('Cola')
         self.assertEqual(can.name, 'Cola')
 
-    def setUp(self) -> None:
-        self.soda__machine = SodaMachine
+    def test_get_inventory_soda_orange_soda(self):
+        can = self.soda_machine.get_inventory_soda('Orange Soda')
+        self.assertEqual(can.name, 'Orange Soda')
 
-    def test_determine_change_value(self):
-        self.assertEqual(Quarter.value, 0.25)
+    def test_get_inventory_soda_root_beer(self):
+        can = self.soda_machine.get_inventory_soda('Root Beer')
+        self.assertEqual(can.name, 'Root Beer')
+
+    def test_get_inventory_soda_invalid(self):
+        can = self.soda_machine.get_inventory_soda('Mounatin Dew')
+        self.assertEqual(can, None)
+
+    def test_return_inventory(self):
+        can = OrangeSoda()
+        self.soda_machine.return_inventory(can)
+        self.assertEqual(len(self.soda_machine.inventory), 31)
+
+    def test_deposit_coins_into_register(self):
+        coin_list = [Quarter(), Dime(), Nickel(), Penny()]
+        self.soda_machine.deposit_coins_into_register(coin_list)
+        self.assertEqual(len(self.soda_machine.register), 92)
 
 
 if __name__ == '__main__':
